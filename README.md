@@ -36,3 +36,4 @@ microk8s kubectl get services
 ```
 
 Tester le résultat dans le navigateur :
+Rendez-vous sur `http://<IP-DE-LA-VM>:30080` (ex: `http://192.168.56.101:30080` sur un réseau Host-Only VirtualBox) pour afficher la page par défaut de Nginx.
