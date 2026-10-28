@@ -1,6 +1,8 @@
 # Déploiement Nginx sur Kubernetes (MicroK8s)
 
-Ce projet déploie un serveur web Nginx sur un cluster Kubernetes léger (MicroK8s), tournant sur une VM Ubuntu Server. C'est la troisième étape de mon projet évolutif : après Ansible et Docker, j'ai voulu voir comment Kubernetes gère les conteneurs à ma place. Le détail de ma démarche est dans [JOURNAL.md](JOURNAL.md).
+L’objectif de ce projet est de déployer un serveur web Nginx sur ma VM Ubuntu grâce à MicroK8s, une version légère de Kubernetes. Contrairement à Docker qui gère des conteneurs simples, Kubernetes déploie ici 2 réplicas (copies )de mon application sous forme de Pods. Si un Pod plante ou doit être mis à jour, Kubernetes le remplace automatiquement, sans coupure de service. L’application est rendue accessible depuis l’extérieur sur le port 30080 de la VM, grâce à un service de type NodePort. 
+
+Le détail de ma démarche est dans [JOURNAL.md](JOURNAL.md).
 
 ## Objectif
 
