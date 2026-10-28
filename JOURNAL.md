@@ -1,6 +1,5 @@
-# Journal de Bord Projet Évolutif Sciensano
+# Journal d'explication pour  le Projet sur kubernetes 
 
-## Session 3 : Orchestration de Conteneurs avec Kubernetes (MicroK8s)
 
 ### 1. Ingestion & Architecture Kubernetes
 
