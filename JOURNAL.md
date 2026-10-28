@@ -1,7 +1,7 @@
 # Journal d'explication pour  le Projet sur kubernetes 
 
 
-### 1. Ingestion & Architecture Kubernetes
+### 1. Initialisation & Architecture du Cluster
 
 - **Déploiement d'un cluster Kubernetes léger via MicroK8s** sur l'environnement Ubuntu Server (`192.168.56.101`).
 - **Prise en main et administration** des objets du cluster via l'outil en ligne de commande `kubectl`.
@@ -25,14 +25,6 @@
     - `port: 80` (port du service interne)
     - `targetPort: 80` (redirection vers le conteneur)
     - `nodePort: 30080` (le port externe accessible via `http://192.168.56.101:30080`)
-
----
-
-### 3. Résolution d'Incident SysAdmin (Le Piège du Disque & LVM)
-
-- **Diagnostic** : Détection de Pods bloqués en `Pending` à cause d'un taint de sécurité `disk-pressure` (vérifié via `kubectl describe pod`).
-- **Ménage système** : Nettoyage du cache et des images inutilisées avec `docker system prune -a -f`.
-- **Extension LVM à chaud** : Prise de conscience que l'installateur Ubuntu réserve par défaut la moitié du disque. Utilisation de `lvextend -l +100%FREE` et `resize2fs` pour faire passer la partition principale de 12 Go à 23 Go et retrouver de l'espace.
 
 ---
 
