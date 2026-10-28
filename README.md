@@ -4,9 +4,6 @@ L’objectif de ce projet est de déployer un serveur web Nginx sur ma VM Ubuntu
 
 Le détail de ma démarche est dans [JOURNAL.md](JOURNAL.md).
 
-## Objectif
-
-Lancer deux copies (réplicas) d'un serveur Nginx, les exposer vers l'extérieur avec un service NodePort, et vérifier que le site répond depuis le navigateur.
 
 ## Fichiers
 
