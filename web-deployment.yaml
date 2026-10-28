@@ -1,34 +1,34 @@
-apiVersion: apps/v1           # Version de l'API Kubernetes utilisée pour les applications
-kind: Deployment              # Type d'objet : un déploiement pour gérer des Pods
-metadata:
-  name: mon-site-web-deployment # Nom unique du déploiement (SANS ESPACES)
-spec:
-  replicas: 2                 # Nombre de Pods (copies) identiques qu'on veut lancer en même temps
-  selector:
-    matchLabels:
-      app: mon-site-web       # Étiquette (badge) pour que le Deployment reconnaisse ses Pods
-  template:
+apiVersion: apps/v1             # Indique à l'API de Kubernetes (son interface de communication) d'utiliser la version 1 de la catégorie "apps" pour comprendre et exécuter le déploiement
+kind: Deployment                # Construit un Deployment qui va gérer nos Pods
+metadata:                       # Sert à identifier et nommer les objets dans Kubernetes
+  name: mon-site-web-deployment # Nom du Deployment
+spec:                           # Les caractéristiques techniques du Deployment (donne les ordres sur ce qu'il doit faire)
+  replicas: 2                   # C'est les 2 copies des Pods qu'on veut lancer
+  selector:                     # Critère de sélection pour que Kubernetes choisisse le bon Pod
+    matchLabels:                # Vérifie ceux qui ont le même label (badge)
+      app: mon-site-web         # Le badge en question qui va être reconnu par Kubernetes
+  template:                     # Le moule réutilisable qui fabrique les Pods (c'est pour ça qu'on ne doit pas réécrire la configuration)
     metadata:
       labels:
-        app: mon-site-web     # Étiquette appliquée aux Pods créés
+        app: mon-site-web       # Applique le badge sur les Pods créés
     spec:
-      containers:
-      - name: nginx           # Nom du conteneur à l'intérieur du Pod
-        image: nginx:latest   # Image officielle Nginx téléchargée pour faire tourner le site
+      containers:               # Propriété du Deployment pour définir le conteneur (ce n'est pas un objet indépendant)
+      - name: nginx             # Nom donné au conteneur
+        image: nginx:latest     # Image à télécharger sur le site officiel (Docker Hub)
         ports:
-        - containerPort: 80   # Le port interne où Nginx écoute dans le conteneur
+        - containerPort: 80     # Le port dans lequel Nginx va écouter à l'intérieur du Pod (80 = port web, Nginx = serveur web)
 
 ---
 
-apiVersion: v1                # Version de l'API Kubernetes de base (pour le réseau)
-kind: Service                 # Type d'objet : un service pour exposer l'application
-metadata:
-  name: mon-site-web-service  # Nom unique du service (SANS ESPACES)
+apiVersion: v1                  # La version du traducteur (API) pour cette partie du fichier
+kind: Service                   # Sélectionne la catégorie Service pour créer un point d'entrée réseau
+metadata:                       # Identifie et nomme l'objet qu'on crée
+  name: mon-site-web-service    # Le nom donné au Service
 spec:
-  type: NodePort              # Type de service qui ouvre un port externe sur la machine/VM
-  selector:
-    app: mon-site-web         # Doit correspondre à l'étiquette du Deployment pour cibler les bons Pods
+  type: NodePort                # Type de service qui ouvre une porte externe à notre VM pour intercepter les requêtes envoyées vers la VM
+  selector:                     # Critère de sélection pour que Kubernetes récupère le bon Pod
+    app: mon-site-web           # Doit correspondre à la bonne étiquette pour envoyer notre service dans le bon Pod
   ports:
-    - port: 80                # Port du service
-      targetPort: 80          # Redirige le trafic vers le port 80 du conteneur
-      nodePort: 30080         # Le port magique externe accessible via ton navigateur : http://<IP-VM>:30080
+    - port: 80                  # Le port interne du Service dans Kubernetes
+      targetPort: 80            # Là où NodePort va rediriger le trafic, donc sur le port 80 du conteneur (vu que Nginx écoute sur le port 80)
+      nodePort: 30080           # Le port (entre 30000 et 32767) qu'on va utiliser lorsqu'on enverra une requête vers notre VM : http://192.168.56.101:30080
