@@ -2,7 +2,7 @@ apiVersion: apps/v1             # Indique à l'API de Kubernetes (son interface 
 kind: Deployment                #  c'est un type d'objet  Deployment qui va gérer nos Pods
 metadata:                       # Sert à identifier et nommer les objets dans Kubernetes
   name: mon-site-web-deployment # Nom du Deployment
-spec:                           # Les caractéristiques techniques du Deployment (donne les ordres sur ce qu'il doit faire)
+spec:                           # c'est l'état souhaité de l'objet 
   replicas: 2                   # C'est les 2 copies des Pods qu'on veut lancer
   selector:                     # Critère de sélection pour que Kubernetes choisisse le bon Pod
     matchLabels:                # Vérifie ceux qui ont le même label (badge)
