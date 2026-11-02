@@ -1,5 +1,5 @@
 apiVersion: apps/v1             # Indique à l'API de Kubernetes (son interface de communication) d'utiliser la version 1 de la catégorie "apps" pour comprendre et exécuter le déploiement
-kind: Deployment                # Construit un Deployment qui va gérer nos Pods
+kind: Deployment                #  c'est un type d'objet  Deployment qui va gérer nos Pods
 metadata:                       # Sert à identifier et nommer les objets dans Kubernetes
   name: mon-site-web-deployment # Nom du Deployment
 spec:                           # Les caractéristiques techniques du Deployment (donne les ordres sur ce qu'il doit faire)
