@@ -3,8 +3,8 @@ kind: Deployment                #  c'est un type d'objet  Deployment qui va gér
 metadata:                       # Sert à identifier et nommer les objets dans Kubernetes
   name: mon-site-web-deployment # Nom du Deployment
 spec:                           # c'est l'état souhaité de l'objet 
-  replicas: 2                   # C'est les 2 copies des Pods qu'on veut lancer
-  selector:                     # Critère de sélection pour que Kubernetes choisisse le bon Pod
+  replicas: 2                   # Définit le nombre exact de copies identiques du Pod qui doivent tourner en permanence.
+  selector:                     # Définit comment le Deployment trouve quels Pods il doit gérer. Il doit obligatoirement correspondre aux labels définis dans le template
     matchLabels:                # Vérifie ceux qui ont le même label (badge)
       app: mon-site-web         # Le badge en question qui va être reconnu par Kubernetes
   template:                     # Le moule réutilisable qui fabrique les Pods (c'est pour ça qu'on ne doit pas réécrire la configuration)
